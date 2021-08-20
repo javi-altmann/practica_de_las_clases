@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios</title>
+</head>
+<body>
+    <form action="/signup" method="post">
+        <!-- Se usa el tag p para que generar una sepación de parrafo entre cada elemento del HTMl. -->
+        <!-- Cuando avancemos con css no va a ser necesario ya que vamos a solucionarlo con estilos :) -->
+        <p>
+          <label>Nombre</label><br>
+          <input type="text" name="first_name">
+        </p>
+        <p>
+          <label>Apellido</label><br>
+          <input type="text" name="last_name">
+        </p>
+        <p>
+          <label>Email</label><br>
+          <input type="email" name="email" required>
+        </p>
+        <p>
+          <label>Telefono</label><br>
+          <input type="tel" name="phone">
+        </p>
+
+        <p>
+            <label>Tipo de telefono</label><br>
+            <label>
+              <input type="radio" name="title" value="Celular">
+              Mr
+            </label>
+            <label>
+              <input type="radio" name="title" value="Fijo">
+              Mrs
+            </label>
+          </p>
+
+        <p>
+          <label>Contraseña</label><br>
+          <input type="password" name="password">
+        </p>
+
+        <p>
+          <label>País</label><br>
+          <select>
+            <option>Argentina</option>
+            <option>Brasil</option>
+            <option>Chile</option>
+            <option>Colombia</option>
+            <option>Uruguay</option>
+          </select>
+        </p>
+        <p>
+          <label>
+            <input type="checkbox" value="terms">
+            Acepta <a href="/terms"> terminos y conidiciones</a>
+          </label>
+        </p>
+        <p>
+          <button>Guardar</button>
+        </p>
+      </form>
+</body>
+</html>
