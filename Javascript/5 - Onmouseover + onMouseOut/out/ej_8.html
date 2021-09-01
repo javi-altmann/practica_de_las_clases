@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="ej_8.css">
+    <script src="ej_8.js"> </script>
+</head>
+<body>
+    <div class="container">
+        <div id="col1" onmouseover="bgCambio(window.getComputedStyle(document.getElementById('col1'), null).getPropertyValue('background-color'))" 
+        onmouseout="bgCambio('transparent')">
+        </div>
+        
+        <div id="col2" onmouseover="bgCambio(window.getComputedStyle(document.getElementById('col2'), null).getPropertyValue('background-color'))" 
+        onmouseout="bgCambio('transparent')">
+        </div>
+        
+        <div id="col3" style="background-color: black;" onmouseover="bgCambio(this.style.backgroundColor)" 
+        onmouseout="bgCambio('transparent')"">
+        </div>
+    </div>
+</body>
+</html>
+
+

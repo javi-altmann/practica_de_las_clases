@@ -1,0 +1,30 @@
+body {background-color: grey;}
+.container {
+    width: 900px;
+    height: 600px;
+    float: left;
+}
+
+.f1 {
+    background-color: blue;
+    float: left;
+    height: 200px;
+    width: 100px;
+
+}
+
+.f2 {
+    background-color: white;
+    float: left;
+    height: 200px;
+    width: 100px;
+
+}
+
+.f3 {
+    background-color: red;
+    float: left;
+    height: 200px;
+    width: 100px;
+
+}

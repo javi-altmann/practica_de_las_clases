@@ -1,0 +1,31 @@
+/*
+Mostrar que si se excede el ancho del container se va abajo la última caja
+*/
+
+.container {
+    width: 900px;
+    height: 500px;
+    border: black 5px dashed;
+}
+.box1 {
+    width: 300px;
+    height: 100px;
+    float: left;
+    background-color: red;
+}
+
+.box2 {    
+    width: 300px;
+    height: 100px;
+    float: left;
+    background-color: yellow;
+
+}
+
+.box3 {
+    width: 300px;
+    height: 100px;
+    float: left;
+    background-color: blue;
+
+}

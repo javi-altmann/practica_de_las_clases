@@ -1,0 +1,31 @@
+/*
+    Aplicamos losi siguientes estilo a los elementos p con class left: 
+    1. Alineación a la izquierda
+    2. Color de la fuente blanco
+    3. Tamaño de la fuente 20px
+    4. Fuente Arial
+    5. 20px de margen
+*/
+p.left {
+    text-align: left;
+    color: white;
+    font-size: 20px;
+    font-family: 'Arial', Courier, monospace;
+    margin-left: 20px;
+}
+
+.center {
+    margin-left: 50%;
+}
+
+.md {
+    height: 200px;
+    width: 200px;
+}
+
+#id-1{
+    background-color: black;
+    width: 200px;
+    height: 150px;
+    border-radius: 5px;
+}

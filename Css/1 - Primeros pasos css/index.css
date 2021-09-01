@@ -1,0 +1,15 @@
+/*
+    Todos los elementos <p> van a estar alineados al centro, con un color de texto rojo:
+*/
+
+p {
+    color: blue;
+    text-align: center;
+}
+
+/*
+    Todo el body va a tener fondo de color negro:
+*/
+body {
+    background-color: black;
+}

@@ -1,0 +1,17 @@
+/*
+Utilizamos el selector universal (*) para darle las caracteristicas asignadas a todos los elementos HTML de la página
+*/
+
+* {
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+
+/*
+Asignamos a todos los h1,h2 y p las propiedades font-size y font-family
+*/
+h1, h2, p {
+    font-size: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

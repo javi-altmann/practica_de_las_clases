@@ -1,0 +1,24 @@
+.nav {
+    background-color: black;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+Utilizamos el display inline-block para que todos los elemenos del menu esten horizontales.
+Si sería display block los elementos del menu estarían verticales.
+*/
+.nav li {
+    display: inline-block;
+    font-size: 20px;
+    padding: 20px;
+    text-decoration: none;
+}
+
+.nav li a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}

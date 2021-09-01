@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear nodos</title>
+</head>
+<body>
+    <div id="new_node"> </div>
+    <h1>Apreniendo a crear nodos con Javascript</h1>
+    <p>1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi pariatur praesentium deleniti natus facere veritatis labore dicta autem, sapiente a veniam, provident dignissimos illo, eos quod ipsam in? Quaerat, modi.</p>
+    <p>2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, id eos. Commodi, ea. Consectetur, iure. Totam, asperiores. Cupiditate, quaerat illum. Quos dolores voluptatibus vero non, doloribus esse reprehenderit? Sit, nulla?</p>
+    <p>3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae velit architecto, aliquam molestias incidunt officiis vero nisi provident nulla cupiditate mollitia perferendis, harum voluptates atque eius blanditiis amet, in unde.</p>
+
+    <script>
+        //Creamos el elemento
+        var element = document.createElement('h2');
+
+        //Creamos el contenido que va a tener el nodo
+        var content = document.createTextNode("Este es el contenido que va a tener el nuevo nodo");
+
+        //Agregamos el contenido al nodo <h2> Este es el contenido que va a tener el nuevo nodo </h2>
+        element.appendChild(content);
+
+        //Agregamos el elemento al documento
+        /*
+            <div id="new_node"> 
+                <h2> Este es el contenido que va a tener el nuevo nodo </h2>
+            </div>
+        */
+        document.getElementById('new_node').appendChild(element);
+    </script>
+</body>
+</html>
+
+<!-- PARA LA GUÍA ESTA AGREGAR AL RESTARAUNTE UN CAMPO DE TEXTO AL MENU
+     Y QUE LE PUEDAS AGREGAR MÁS COSAS. 
+     OTRA POSIBILIDAD SERÍA AGREGAR ALGO A UN CAMPO Y QUE AL HACER CLICK EN EL BOTÓN LO RENDERICE EN LA PAGINA-->
