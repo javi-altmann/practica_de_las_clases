@@ -1,0 +1,24 @@
+@model MVC_NT1.Models.OrderViewModel;
+@{
+    ViewData["Title"] = "EjemploViewData";
+}
+
+@{
+    var orderObject = ViewData["order"] as OrderViewModel;
+}
+
+<h1>View Data</h1>
+<h2>@ViewData["Message"].</h2>
+
+<h1>View Bag</h1>
+
+<h2> @ViewBag.Nombre</h2>
+
+<h1>Objeto view Data</h1>
+<h2>@orderObject.Total</h2>
+
+
+<h1>Objeto view bag</h1>
+<h2>@ViewBag.Order.Total</h2>
+
+

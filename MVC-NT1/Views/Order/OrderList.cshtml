@@ -1,0 +1,27 @@
+@model List<MVC_NT1.Models.OrderViewModel>
+
+
+@{
+    ViewData["Title"] = "OrderList";
+}
+
+@foreach (var item in Model)
+{
+    <h1>@item.Name</h1>
+}
+
+@{
+    var order = new OrderViewModel {
+        Id = 5, 
+        Name = "10", 
+        Total = 100
+    };
+}
+
+<h2>El total del objeto creado es: @order.Total </h2>
+
+@for (var i = 0; i < Model.Count(); i++)
+{
+    var orderTest = Model[i];
+    <text>Name: @orderTest.Name</text> <br>
+}
