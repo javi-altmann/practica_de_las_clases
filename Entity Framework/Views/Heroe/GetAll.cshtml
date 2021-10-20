@@ -1,0 +1,18 @@
+@model List<Entity_Framework.Models.ViewModel.GaleriaViewModel>;
+
+<div class="container mt-4">
+     <div class="row">
+    @foreach (var item in Model) {
+            <div class="col-md-4 col-sm-12">
+                <div class="card" style="width: 18rem;">
+                    <img src="@item.Imagen" class="card-img-top" style="height: 400px; alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Nombre</h5>
+                        <p class="card-text">@item.Descripcion</p>
+                        <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                    </div>
+                </div>
+            </div>
+    }
+    </div> 
+</div>

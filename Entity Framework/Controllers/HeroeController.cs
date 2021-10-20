@@ -1,112 +1,80 @@
-using System.IO.Compression;
 using System.Collections.Generic;
 using System.Linq;
+
 using Entity_Framework.Database;
 using Entity_Framework.Models;
+using Entity_Framework.Models.ViewModel;
+
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace Entity_Framework.Controllers
-{
-    public class HeroeController : Controller
-    {
+namespace Entity_Framework.Controllers {
+    public class HeroeController : Controller {
         private HeroeDbContext _heroeDbContext;
-        public HeroeController(HeroeDbContext heroeDbContext)
-        {
+        public HeroeController (HeroeDbContext heroeDbContext) {
             this._heroeDbContext = heroeDbContext;
         }
 
+        [HttpGet]
         public IActionResult Create() {
-            var imagenes = new List<Imagen> {
-                new Imagen {
-                    Url = "https://test.com.ar",
-                    Orden = 1
-                }, 
-                new Imagen {
-                    Url = "https://test2.com.ar",
-                    Orden = 2
-                }
+            var universos = _heroeDbContext.Universos
+                .Select (x => new SelectListItem {
+                    Text = x.Nombre,
+                    Value = x.Id.ToString()
+                })
+                .ToList();
+            var UniversoVm = new CrearHeroeViewModel {
+                Universos = universos
             };
 
-            var universoMarvel = new Universo {
-                Nombre = "Marvel"
-            };
-    
-            var universoDc = new Universo {
-                Nombre = "Dc"
-            };
+            return View (UniversoVm);
+        }
 
-            var heroes = new List<Heroe> {
-                new Heroe { 
-                Nombre = "Batman",
-                Descripcion = "Some quick example text to build on the card title and make up the bulk of the card's content.",
-                Imagenes = imagenes,
-                Universo = universoDc
-            },
-                new Heroe { 
-                Nombre = "Daredevil",
-                Descripcion = "Some quick example text to build on the card title and make up the bulk of the card's content.",
-                Imagenes = imagenes,
-                Universo = universoMarvel
+        [HttpPost]
+        public IActionResult Create (CrearHeroeViewModel heroeVm) {
+            if (ModelState.IsValid) {
+                var imagenes = new List<Imagen> {
+                    new Imagen {
+                    Url = heroeVm.Imagen,
+                    Orden = heroeVm.OrdenImagen
+                    }
+                };
+
+                var universoSeleccionado = _heroeDbContext.Universos
+                                            .Where(x => x.Id == heroeVm.Universo)
+                                            .FirstOrDefault();
+
+                var heroe = new Heroe {
+                    Nombre = heroeVm.Nombre,
+                    Descripcion = heroeVm.Descripcion,
+                    Imagenes = imagenes,
+                    Universo = universoSeleccionado
+                };
+
+                _heroeDbContext.Heroes.Add(heroe);
+                _heroeDbContext.SaveChanges();
+
+                return RedirectToAction("Index", "Home");
             }
-            };
-
-            _heroeDbContext.Heroes.AddRange(heroes);
-            _heroeDbContext.SaveChanges();
-
-            return Json(heroes);
+            return View();
         }
 
         public IActionResult GetAll() {
-
             var heroesComplete = _heroeDbContext.Heroes
-                                .Include(x => x.Imagenes)
-                                .Include(x=> x.Universo)
-                                .ToList();
+                .Include(x => x.Imagenes)
+                .Include(x => x.Universo)
+                .ToList();
 
-            return Json(heroesComplete);
-        }
+            var heroes = heroesComplete.Select(x => new GaleriaViewModel {
+                IdHeroe = x.Id, 
+                Nombre = x.Nombre,
+                Descripcion = x.Descripcion, 
+                Imagen = x.Imagenes.FirstOrDefault().Url
+            }).ToList();  
 
-        public IActionResult GetMarvel() {
-            var heroesMarvel = _heroeDbContext.Heroes
-                                .Include(x => x.Imagenes)
-                                .Include(x=> x.Universo)
-                                .Where(x=> x.Universo.Nombre == "Marvel")
-                                .ToList();
-            return Json(heroesMarvel);
-        }
+            return View(heroes);
 
-        public IActionResult SaveOrden() {
-            var heroe = _heroeDbContext.Heroes.Where(x => x.Id == 1).FirstOrDefault();
-
-            var heroe2 = _heroeDbContext.Heroes.Where(x => x.Id == 2).FirstOrDefault();
-
-             var order = new Orden {
-                Status = "Aprobado", 
-                Total = 90, 
-                Subtotal = 90, 
-            };
-                        
-            var orderHeroes = new List<OrdenHeroe> {
-                new OrdenHeroe {
-                    Heroe = heroe, 
-                    Orden = order, 
-                    Cantidad = 10, 
-                    Descuento = 1
-                }, 
-                new OrdenHeroe {
-                    Heroe = heroe2, 
-                    Orden = order,
-                    Cantidad = 2, 
-                    Descuento = 1
-                }
-            };
-          
-            _heroeDbContext.OrdenesHeroes.AddRange(orderHeroes);
-           
-            _heroeDbContext.SaveChanges();
-
-            return Json("Ok");
         }
     }
 }
