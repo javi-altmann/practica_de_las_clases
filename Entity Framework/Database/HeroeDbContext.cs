@@ -14,5 +14,6 @@ namespace Entity_Framework.Database
         public DbSet<Orden> Ordenes { get; set; }
         public DbSet<OrdenHeroe> OrdenesHeroes { get; set; }
         public DbSet<Universo> Universos { get; set; } 
+        public DbSet<Usuario> Usuarios { get; set; } 
     }
 }

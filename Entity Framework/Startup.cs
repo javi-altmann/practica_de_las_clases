@@ -1,4 +1,5 @@
 using Entity_Framework.Database;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,15 @@ namespace Entity_Framework
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
+				opciones =>
+				{
+					opciones.LoginPath = "/Usuario/Ingresar";
+					opciones.AccessDeniedPath = "/Usuario/AccesoDenegado";
+					opciones.LogoutPath = "/Usuario/Salir";
+				}
+			);
+			
             services.AddControllersWithViews();
                 services.AddDbContext<HeroeDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -43,6 +53,9 @@ namespace Entity_Framework
 
             app.UseRouting();
 
+            //UseAuthentication tiene que ir antes que UseAuthorization
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -51,6 +64,9 @@ namespace Entity_Framework
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            
+            // UseCookiePolicy al final de la configuracion
+			app.UseCookiePolicy();
         }
     }
 }

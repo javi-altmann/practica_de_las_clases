@@ -4,7 +4,7 @@ using System.Linq;
 using Entity_Framework.Database;
 using Entity_Framework.Models;
 using Entity_Framework.Models.ViewModel;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +16,7 @@ namespace Entity_Framework.Controllers {
             this._heroeDbContext = heroeDbContext;
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Create() {
             var universos = _heroeDbContext.Universos
@@ -31,6 +32,7 @@ namespace Entity_Framework.Controllers {
             return View (UniversoVm);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Create (CrearHeroeViewModel heroeVm) {
             if (ModelState.IsValid) {
@@ -74,7 +76,6 @@ namespace Entity_Framework.Controllers {
             }).ToList();  
 
             return View(heroes);
-
         }
     }
 }
