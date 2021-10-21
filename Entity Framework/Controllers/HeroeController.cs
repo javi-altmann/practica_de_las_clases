@@ -16,9 +16,16 @@ namespace Entity_Framework.Controllers {
             this._heroeDbContext = heroeDbContext;
         }
 
+        //[Authorize(Roles = "Administrador")]
+        [Authorize(Policy = "PolicyAdmin")]
         [Authorize]
         [HttpGet]
         public IActionResult Create() {
+
+            /*if(User.Identity.IsAuthenticated){
+                var claims = User.Claims.ToList();
+            } */
+
             var universos = _heroeDbContext.Universos
                 .Select (x => new SelectListItem {
                     Text = x.Nombre,

@@ -66,7 +66,7 @@ namespace Entity_Framework.Controllers
 
                         // Ejecutamos el Login
                         HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                                                
+                                             
                         // Redirigimos a la pagina principal
                         return RedirectToAction("Index", "Home");
                     }                    
