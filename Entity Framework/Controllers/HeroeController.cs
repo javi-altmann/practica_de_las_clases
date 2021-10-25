@@ -17,8 +17,8 @@ namespace Entity_Framework.Controllers {
         }
 
         //[Authorize(Roles = "Administrador")]
-        [Authorize(Policy = "PolicyAdmin")]
-        [Authorize]
+        //[Authorize(Policy = "PolicyAdmin")]
+        [Authorize(Roles = "Administrador")]
         [HttpGet]
         public IActionResult Create() {
 
@@ -39,7 +39,6 @@ namespace Entity_Framework.Controllers {
             return View (UniversoVm);
         }
 
-        [Authorize]
         [HttpPost]
         public IActionResult Create (CrearHeroeViewModel heroeVm) {
             if (ModelState.IsValid) {
@@ -69,6 +68,7 @@ namespace Entity_Framework.Controllers {
             return View();
         }
 
+        [Authorize]
         public IActionResult GetAll() {
             var heroesComplete = _heroeDbContext.Heroes
                 .Include(x => x.Imagenes)
