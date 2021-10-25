@@ -18,21 +18,12 @@ namespace Entity_Framework.Controllers {
 
         [HttpGet]
         public IActionResult Create() {
-            var universos = _heroeDbContext.Universos
-                .Select (x => new SelectListItem {
-                    Text = x.Nombre,
-                    Value = x.Id.ToString()
-                })
-                .ToList();
-            var UniversoVm = new CrearHeroeViewModel {
-                Universos = universos
-            };
-
-            return View (UniversoVm);
+            return View (getCrearHeroeViewModel());
         }
 
         [HttpPost]
         public IActionResult Create (CrearHeroeViewModel heroeVm) {
+                            
             if (ModelState.IsValid) {
                 var imagenes = new List<Imagen> {
                     new Imagen {
@@ -57,7 +48,7 @@ namespace Entity_Framework.Controllers {
 
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+            return View(getCrearHeroeViewModel());
         }
 
         public IActionResult GetAll() {
@@ -74,7 +65,19 @@ namespace Entity_Framework.Controllers {
             }).ToList();  
 
             return View(heroes);
+        }
 
+        private CrearHeroeViewModel getCrearHeroeViewModel() {
+             var universos = _heroeDbContext.Universos
+                .Select (x => new SelectListItem {
+                    Text = x.Nombre,
+                    Value = x.Id.ToString()
+                })
+                .ToList();
+
+            return new CrearHeroeViewModel {
+                Universos = universos
+            };
         }
     }
 }
